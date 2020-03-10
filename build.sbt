@@ -1,7 +1,12 @@
-name := "mongo-scala-example"
+lazy val commonSettings = Seq(
+  version := "0.1.0-SNAPSHOT",
+  scalaVersion := "2.13.1",
+  libraryDependencies += "org.scala-lang" % "scala-library" % "2.13.1",
+  libraryDependencies += "org.mongodb.scala" %% "mongo-scala-driver" % "4.0.0" exclude ("org.mongodb.scala", "bson-scala_2.13")
+)
 
-version := "1.0"
-
-scalaVersion := "2.12.2"
-
-dependsOn(RootProject(uri("git://github.com/mongodb/mongo-scala-driver")))
+lazy val example = (project in file("example"))
+  .settings(
+    commonSettings,
+    name := "mongo-scala-example"
+  )
